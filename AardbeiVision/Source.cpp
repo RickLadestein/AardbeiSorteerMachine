@@ -10,14 +10,18 @@
 #include <chrono>
 
 #include "Camera.h"
+//#include "bewerking.h"
 
 int main() 
 {
 	// Loop variabelen
 	int MainLoop = 1;
 	int ControleLoop = 0;
+	int I = 0;
 
 	while (MainLoop == 1) {
+		I++;
+
 		system("cls");
 
 		cout << "Typ een 'c' gevolgd door een enter voor controle." << endl <<
@@ -35,10 +39,11 @@ int main()
 					
 			resize(aanbei, aanbei, Size(), 0.2, 0.2, INTER_AREA);
 			imshow("plaatje", aanbei);
-			
 
-			waitKey(0);
-			destroyAllWindows;
+			ostringstream Bestandnaam;
+			Bestandnaam << "C:\\aardbei\\fake\\" "aardbei+I" ".PNG";
+			imwrite(Bestandnaam.str(), aanbei);
+
 		}
 		//bij keuze q stopt het programma
 		else if (keuze == 'q') {
