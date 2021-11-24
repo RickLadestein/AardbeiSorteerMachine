@@ -25,11 +25,11 @@ Mat Camera::GetImage(int Controleloop) {
 	}
 
 	// Breedte en hooogte van het scherm aanpassen naar die van de camera. 
-	int dWidth = cap.set(CAP_PROP_FRAME_WIDTH, 2048);
-	int dHeight = cap.set(CAP_PROP_FRAME_HEIGHT, 1536);
+	int dWidth = cap.set(CAP_PROP_FRAME_WIDTH, 1280);
+	int dHeight = cap.set(CAP_PROP_FRAME_HEIGHT, 960);
 
 	// Window maken waarin het live beeld komt
-	namedWindow("MyVideo", WINDOW_NORMAL);
+	namedWindow("MyVideo", WINDOW_FREERATIO);
 
 	// Continue loop waarin een beeld wordt opgehaald en wordt getoond in het window
 	Mat frame;
@@ -41,6 +41,9 @@ Mat Camera::GetImage(int Controleloop) {
 		bool bSuccess = cap.read(frame);
 
 		// Het tonen van beeld
+		if (frame.empty()) {
+			continue;
+		}
 		imshow("MyVideo", frame);
 
 		// als de spatiebalk ingedrukt wordt, maak een foto
